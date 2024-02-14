@@ -34,3 +34,35 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+/** 
+-useEffect is used for side effects and after compononet renders then useEffect runs that again state changes so in Next.js, nextjs preRenders the component for serverside rendering so suppose if useState having default value empty array lets say [] and inside useEffect we setState so nextjs will not wait for useEffect complete it pre renders the component and empty array stores in HTML page and bad for seo. If we console.log then first it will show undefined then after useEffect runs show value.
+
+-pre rendering happen at the time of build project for deploying and next js don't wait for data to load after rendering when we use useEffect or anything else. two forms of pre rendering are static generation and server side generation. and for tackle this we use getStaticProps in static generation.
+
+
+-getServerSideProps and getStaticProps are both methods provided by Next.js for fetching data before rendering a page, but they serve different purposes.
+
+-getServerSideProps: This function is used for server-side rendering (SSR). When a page with getServerSideProps is requested, the data fetching and rendering occur on the server on every request. This means that the page content is dynamically generated with fresh data for each request, making it suitable for pages that require frequently updated data or personalized content.
+
+-getStaticProps: This function is used for static site generation (SSG). When a page with getStaticProps is built, Next.js pre-renders the page at build time and fetches the required data. The pre-rendered page is then served to users, which can improve performance and reduce server load. getStaticProps is suitable for pages with data that doesn't change frequently and can be pre-rendered at build time.
+
+-Advantages of getStaticProps over getServerSideProps:
+Better performance: Since getStaticProps pre-renders pages at build time, it can lead to faster page loads and reduced server load compared to getServerSideProps, which renders pages dynamically on every request.
+Improved scalability: Pre-rendered pages can be served from a CDN, improving scalability and reducing server load.
+-Disadvantages of getServerSideProps:
+Slower performance: Since getServerSideProps renders pages dynamically on each request, it can result in slower page loads compared to pre-rendered pages generated with getStaticProps.
+Increased server load: Handling data fetching and rendering on the server for every request can increase server load, especially under high traffic.
+
+-When to use getStaticProps or getServerSideProps:
+Use getStaticProps when:
+The data for the page can be fetched at build time and doesn't change frequently.
+You want better performance and scalability.
+
+Use getServerSideProps when:
+The data for the page needs to be fetched on every request or changes frequently.
+You need to render personalized content based on user authentication, session data, or other dynamic factors.
+
+context.req and context.res are objects provided by Next.js in getServerSideProps and API route handlers. They represent the HTTP request and response objects, respectively. These objects allow you to access information about the incoming request (such as headers, cookies, and query parameters) and control the outgoing response (such as setting headers, cookies, and status codes). They provide a way to interact with the underlying HTTP protocol when server-side rendering or handling API requests.
+ */

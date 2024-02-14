@@ -7,7 +7,7 @@ function MeetupItem(props) {
   const router = useRouter();
 
   const showDetailsHandler = () => {
-    router.push('/' + props.id);
+    router.push(`/new-meetup/${props.id}`);//hmne new-meetup folder banaya h page ke andar isiliye new-meetup route ke baad id ayegi agar forlder ko hi [new-meetup] bnate aur usme index.js bnate to hmara route dynamic hota na ki new-meetup ke andar becauase folder name hi dynamic liye mtlb /id aisa aata kuchh
   }
 
   return (
